@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>{{ business.name }} - Business Dashboard</title>
+    <link href="https://cdn.bokeh.org/bokeh/release/bokeh-3.4.0.min.css" rel="stylesheet">
+    <style>
+      body {font-family: Arial, sans-serif; margin: 20px; background: #f5f5f5;}
+      .header {background: white; padding: 2rem; border-radius: 10px; margin-bottom: 2rem; text-align: center;}
+      .kpi-grid {display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 2rem;}
+      .kpi-card {background: white; padding: 1.5rem; border-radius: 8px; text-align: center;}
+      .kpi-value {font-size: 2rem; font-weight: bold; color: #2563eb; margin: 0.5rem 0;}
+      .kpi-label {color: #64748b; font-size: 0.9rem;}
+      .chart-container {background: white; padding: 1.5rem; border-radius: 8px; margin-bottom: 2rem;}
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <h1>🚀 Humbu Store Business Dashboard</h1>
+      <p>Monitoring emails, website traffic, and revenue metrics</p>
+    </div>
+    <div class="kpi-grid">
+      <div class="kpi-card"><div class="kpi-label">Today's Revenue</div><div class="kpi-value">{{ kpi.today_revenue }}</div></div>
+      <div class="kpi-card"><div class="kpi-label">New Customers</div><div class="kpi-value">{{ kpi.today_customers }}</div></div>
+      <div class="kpi-card"><div class="kpi-label">Website Visitors</div><div class="kpi-value">{{ kpi.today_visitors }}</div></div>
+      <div class="kpi-card"><div class="kpi-label">Conversion Rate</div><div class="kpi-value">{{ kpi.today_conversion }}%</div></div>
+      <div class="kpi-card"><div class="kpi-label">Emails Today</div><div class="kpi-value">{{ kpi.total_emails }}</div></div>
+    </div>
+    <div class="chart-container">
+      {% for d in div %}
+        {{ d|safe }}
+      {% endfor %}
+    </div>
+    {{ script|safe }}
+    <script src="https://cdn.bokeh.org/bokeh/release/bokeh-3.4.0.min.js"></script>
+    <footer style="text-align: center; margin-top: 3rem; color: #64748b;">
+      <p>Last updated: {{ now }}</p>
+    </footer>
+  </body>
+</html>
